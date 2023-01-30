@@ -1,0 +1,16 @@
+Env: "local"
+Port: "6080"
+AppName: "images-ai"
+ComponentConfigs:
+  Client:
+    Timeout: 15
+    IdleConnTimeout: 15
+    MaxIdleConsPerHost: 50
+    MaxConsPerHost: 0
+    DisableCompression: 2
+    InsecureSkipVerify: 1
+Services:
+  - Name: "openAi"
+    URL: "https://api.openai.com/v1/images/generations"
+    ApiKeyEnvironmentVariable: "API_KEY"
+    PublicKeyEnvironmentVariable: "PUBLIC_KEY"
