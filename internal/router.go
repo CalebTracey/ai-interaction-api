@@ -2,9 +2,9 @@ package internal
 
 import (
 	"encoding/json"
+	"github.com/calebtracey/ai-interaction-api/external"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	"images-ai/external"
 	"net/http"
 )
 
@@ -13,9 +13,9 @@ type Handler struct {
 }
 
 func (h Handler) InitializeRoutes() *gin.Engine {
-
 	r := gin.Default()
-	r.POST("/image", h.imageHandler())
+
+	r.Group("/v1").POST("/image", h.imageHandler())
 
 	return r
 }

@@ -1,9 +1,10 @@
 package main
 
 import (
+	"github.com/NYTimes/gziphandler"
+	"github.com/calebtracey/ai-interaction-api/internal"
 	config "github.com/calebtracey/config-yaml"
 	"github.com/joho/godotenv"
-	"images-ai/internal"
 	"log"
 )
 
@@ -37,5 +38,7 @@ func main() {
 }
 
 func run(svc *internal.DAO) {
-	log.Fatal(internal.Handler{DAO: svc}.InitializeRoutes().Run())
+	handler := internal.Handler{DAO: svc}
+
+	log.Fatal(listenAndServe("8080", gziphandler.GzipHandler(corsHandler().Handler(handler.InitializeRoutes()))))
 }

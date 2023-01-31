@@ -1,6 +1,6 @@
 Env: "local"
 Port: "6080"
-AppName: "images-ai"
+AppName: "ai-interaction-api"
 ComponentConfigs:
   Client:
     Timeout: 15

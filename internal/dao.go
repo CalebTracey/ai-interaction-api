@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"images-ai/external"
+	"github.com/calebtracey/ai-interaction-api/external"
 	"net/http"
 	"os"
 )

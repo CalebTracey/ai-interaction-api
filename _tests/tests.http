@@ -1,22 +1,18 @@
-### Send POST request with json body
+### API Test POST Image
 POST https://api.openai.com/v1/images/generations
 Content-Type: application/json
 Authorization: {{api-key}}
 
-{
-  "prompt": "a cute cat playing guitar",
-  "n": 2,
-  "size": "1024x1024"
-}
+< request.json
+> handler.js
+
 ###
 
-POST localhost:8080/image
+POST localhost:8080/v1/image
 Content-Type: application/json
 Authorization: {{api-key}}
 
-{
-  "prompt": "a cute cat playing guitar",
-  "n": 2,
-  "size": "1024x1024"
-}
+< request.json
+> handler.js
 
+###
