@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"encoding/json"
 	"github.com/calebtracey/ai-interaction-api/external"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -21,37 +20,21 @@ func (h Handler) InitializeRoutes() *gin.Engine {
 
 	return r
 }
-
-type AIResponse struct {
-	Created string `json:"created"`
-	Data    images `json:"data"`
-}
-
-type images []image
-
-type image struct {
-	Url string `json:"url"`
-}
-
 func (h Handler) imageHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var apiRequest external.APIRequest
 		sw := time.Now()
 
-		if err := json.NewDecoder(ctx.Request.Body).Decode(&apiRequest); err != nil {
-			panic(err)
-		}
-
-		if apiResp := h.DAO.GenerateImage(ctx, apiRequest); apiResp.StatusCode() == http.StatusOK {
+		if apiResp := h.DAO.GenerateImage(ctx, ctx.Request); apiResp.StatusCode() == http.StatusOK {
 			apiResp.Message.AddMessageDetails(sw)
 			ctx.JSON(http.StatusOK, apiResp)
+
 			return
 
 		} else {
 			log.Errorf("imageHandler: error: %v", apiResp.Message.ErrorLog)
 			apiResp.Message.AddMessageDetails(sw)
-
 			ctx.JSON(apiResp.StatusCode(), apiResp)
+
 			return
 		}
 

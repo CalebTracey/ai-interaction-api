@@ -10,9 +10,9 @@ Authorization: {{api-key}}
 
 POST localhost:8080/v1/image
 Content-Type: application/json
-Authorization: {{api-key}}
+#Authorization: {{api-key}}
 
-< request.json
+< request_0.json
 > handler.js
 
 ###

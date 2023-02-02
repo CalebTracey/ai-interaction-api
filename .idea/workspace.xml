@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="first push">
-      <change afterPath="$PROJECT_DIR$/external/services.go" afterDir="false" />
+    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="struct_work">
+      <change afterPath="$PROJECT_DIR$/_tests/request_0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_tests/request.json" beforeDir="false" afterPath="$PROJECT_DIR$/_tests/request.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_tests/tests.http" beforeDir="false" afterPath="$PROJECT_DIR$/_tests/tests.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/svr/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/external/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/external/models.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dao.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi3.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi3.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +28,38 @@
   </component>
   <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="struct_work" />
+                    <option name="lastUsedInstant" value="1675374817" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1675374816" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="HttpClientSelectedEnvironments">
     <file url="file://$PROJECT_DIR$/_tests/tests.http" environment="dev" />
@@ -47,33 +72,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/calebtracey/Code/ai-interaction-api/cmd/svr&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.14285715&quot;,
-    &quot;rest.client.default.execution.environment&quot;: &quot;dev&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/calebtracey/Code/ai-interaction-api/_tests",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.14285715",
+    "rest.client.default.execution.environment": "dev",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_tests" />
       <recent name="$PROJECT_DIR$/cmd/svr" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -85,9 +111,6 @@
     <configuration name="go build github.com/calebtracey/ai-interaction-api/cmd/svr" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="ai-interaction-api" />
       <working_directory value="$PROJECT_DIR$/cmd/svr" />
-      <envs>
-        <env name="API_KEY" value="Bearer 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" />
-      </envs>
       <EXTENSION ID="net.ashald.envfile">
         <option name="IS_ENABLED" value="false" />
         <option name="IS_SUBST" value="false" />
@@ -146,9 +169,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="HTTP Request.tests | GO API - POST | Test | New Image" />
+        <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.tests | API Test POST Image" />
         <item itemvalue="HTTP Request.tests | #3" />
-        <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
       </list>
     </recent_temporary>
@@ -165,7 +188,7 @@
       <workItem from="1675141726725" duration="4515000" />
       <workItem from="1675175857595" duration="2091000" />
       <workItem from="1675219083209" duration="4388000" />
-      <workItem from="1675268028977" duration="11523000" />
+      <workItem from="1675268028977" duration="16681000" />
     </task>
     <task id="LOCAL-00001" summary="first push">
       <created>1675179565328</created>
@@ -174,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675179565328</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="struct_work">
+      <created>1675374836710</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675374836710</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +212,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first push" />
-    <option name="LAST_COMMIT_MESSAGE" value="first push" />
+    <MESSAGE value="struct_work" />
+    <option name="LAST_COMMIT_MESSAGE" value="struct_work" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -197,8 +228,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/router.go</url>
-          <line>44</line>
+          <line>26</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/dao.go</url>
+          <line>43</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

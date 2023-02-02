@@ -1,5 +1,9 @@
 package external
 
+import (
+	"net/http"
+)
+
 type APIRequest struct {
 	Prompt string `json:"prompt"`
 	N      int    `json:"n"`
@@ -13,9 +17,9 @@ type APIResponse struct {
 
 func (res *APIResponse) StatusCode() (code int) {
 	if len(res.Message.ErrorLog) > 0 {
-		code = res.Message.ErrorLog.GetHTTPStatus(len(res.Result.Data))
+		return res.Message.ErrorLog.GetHTTPStatus(len(res.Result.Data))
 	}
-	return code
+	return http.StatusOK
 }
 
 type AIResponse struct {

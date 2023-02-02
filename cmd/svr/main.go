@@ -4,6 +4,7 @@ import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/calebtracey/ai-interaction-api/internal"
 	config "github.com/calebtracey/config-yaml"
+	"github.com/joho/godotenv"
 	"log"
 )
 
@@ -12,9 +13,9 @@ const configPath = "config.yaml"
 type builder struct{}
 
 func (b *builder) initializeDAO() (*internal.DAO, error) {
-	//if err := godotenv.Load(); err != nil {
-	//	return nil, err
-	//}
+	if err := godotenv.Load(); err != nil {
+		return nil, err
+	}
 
 	cfg := config.New(configPath)
 
