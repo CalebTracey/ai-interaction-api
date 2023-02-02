@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="first push">
-      <change afterPath="$PROJECT_DIR$/.idea/ai-interaction-api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_tests/handler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_tests/request.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/svr/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/openapi3.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/services.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_tests/request.json" beforeDir="false" afterPath="$PROJECT_DIR$/_tests/request.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_tests/tests.http" beforeDir="false" afterPath="$PROJECT_DIR$/_tests/tests.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/svr/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/svr/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/external/models.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images-ai.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ai-interaction-api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dao.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi3.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi3.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="OpenAPI" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -54,6 +49,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
@@ -81,13 +77,17 @@
       <recent name="$PROJECT_DIR$/cmd/svr" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/external" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build github.com/calebtracey/ai-interaction-api/cmd/svr">
-    <configuration name="go build github.com/calebtracey/ai-interaction-api/cmd/svr" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build github.com/calebtracey/ai-interaction-api/cmd/svr" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="ai-interaction-api" />
       <working_directory value="$PROJECT_DIR$/cmd/svr" />
+      <envs>
+        <env name="API_KEY" value="Bearer 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" />
+      </envs>
       <EXTENSION ID="net.ashald.envfile">
         <option name="IS_ENABLED" value="false" />
         <option name="IS_SUBST" value="false" />
@@ -107,7 +107,16 @@
     <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration name="tests | API Test POST Image" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/_tests/tests.http" requestIdentifier="API Test POST Image" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="tests | GO API - POST | Test | New Image" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/_tests/tests.http" index="3" requestIdentifier="GO API - POST | Test | New Image" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="tests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/_tests/tests.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="tests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/_tests/tests.http" index="3" requestIdentifier="#3" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration default="true" type="SwaggerCodegen">
@@ -128,12 +137,17 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build github.com/calebtracey/ai-interaction-api/cmd/svr" />
+      <item itemvalue="HTTP Request.tests | #3" />
+      <item itemvalue="HTTP Request.tests | API Test POST Image" />
+      <item itemvalue="HTTP Request.tests | GO API - POST | Test | New Image" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
       <item itemvalue="HTTP Request.tests | #2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build github.com/calebtracey/ai-interaction-api/cmd/svr" />
+        <item itemvalue="HTTP Request.tests | GO API - POST | Test | New Image" />
+        <item itemvalue="HTTP Request.tests | API Test POST Image" />
+        <item itemvalue="HTTP Request.tests | #3" />
         <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
       </list>
@@ -149,8 +163,18 @@
       <updated>1675127249811</updated>
       <workItem from="1675127251097" duration="4995000" />
       <workItem from="1675141726725" duration="4515000" />
-      <workItem from="1675175857595" duration="1202000" />
+      <workItem from="1675175857595" duration="2091000" />
+      <workItem from="1675219083209" duration="4388000" />
+      <workItem from="1675268028977" duration="11523000" />
     </task>
+    <task id="LOCAL-00001" summary="first push">
+      <created>1675179565328</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675179565328</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +186,22 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file:///usr/local/opt/go/libexec/src/net/http/client.go</url>
+          <line>728</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/router.go</url>
+          <line>44</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
