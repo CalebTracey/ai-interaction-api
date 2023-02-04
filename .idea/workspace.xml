@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="github actions - 1">
+    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="updated Dockerfile">
+      <change beforePath="$PROJECT_DIR$/.gcloudignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gcloudignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_tests/tests.http" beforeDir="false" afterPath="$PROJECT_DIR$/_tests/tests.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/svr/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +102,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.14285715&quot;,
+    &quot;rest.client.default.execution.environment&quot;: &quot;dev&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -196,7 +200,8 @@
       <workItem from="1675175857595" duration="2091000" />
       <workItem from="1675219083209" duration="4388000" />
       <workItem from="1675268028977" duration="21445000" />
-      <workItem from="1675494691998" duration="344000" />
+      <workItem from="1675494691998" duration="1579000" />
+      <workItem from="1675529665658" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="first push">
       <created>1675179565328</created>
@@ -289,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675494310794</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated Dockerfile">
+      <created>1675495335119</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1675495335119</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +316,8 @@
     <MESSAGE value="cleanup" />
     <MESSAGE value="github actions" />
     <MESSAGE value="github actions - 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="github actions - 1" />
+    <MESSAGE value="updated Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Dockerfile" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

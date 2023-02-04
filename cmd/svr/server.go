@@ -64,7 +64,7 @@ func listenAndServe(addr string, handler http.Handler) error {
 
 func corsHandler() *cors.Cors {
 	return cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000", "http://localhost:8080/v1/image"},
+		AllowedOrigins:   []string{"http://localhost:3000", "http://localhost:8080/v1/image", "https://dev-zan4mh2kqq-uk.a.run.app/v1/image"},
 		AllowCredentials: true,
 		AllowedMethods:   []string{"GET", "POST", "OPTIONS", "DELETE", "PUT"},
 		AllowedHeaders:   []string{"Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "X-Requested-With", "Authorization", "Content-Type", "X-Requested-With", "Bearer", "Origin"},

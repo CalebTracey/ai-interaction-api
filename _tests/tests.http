@@ -18,7 +18,7 @@ Content-Type: application/json
 ###
 
 # @name GO API - POST | Test | New Image
-POST localhost:8080/v1/test
+POST {{URL}}/v1/image
 Content-Type: application/json
 #Authorization: {{api-key}}
 
