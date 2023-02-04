@@ -66,11 +66,12 @@ const (
 	localhostCRA  = "http://localhost:3000"
 	localhostVite = "http://localhost:5173"
 	githubPages   = "https://calebtracey.github.io/robot-image-ui"
+	githubPages1  = "https://calebtracey.github.io"
 	githubPages2  = "https://calebtracey.github.io/robot-image-ui/"
 )
 
 var (
-	allowedOrigins = []string{localhostCRA, localhostVite, githubPages, githubPages2}
+	allowedOrigins = []string{localhostCRA, localhostVite, githubPages, githubPages1, githubPages2}
 	allowedMethods = []string{"GET", "POST", "OPTIONS", "DELETE", "PUT"}
 	allowedHeaders = []string{"Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "X-Requested-With", "Authorization", "Content-Type", "X-Requested-With", "Bearer", "Origin"}
 )
