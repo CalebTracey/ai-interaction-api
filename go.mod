@@ -3,6 +3,7 @@ module github.com/calebtracey/ai-interaction-api
 go 1.19
 
 require (
+	github.com/NYTimes/gziphandler v1.1.1
 	github.com/calebtracey/config-yaml v1.0.10
 	github.com/gin-gonic/gin v1.8.2
 	github.com/joho/godotenv v1.4.0
@@ -11,7 +12,6 @@ require (
 )
 
 require (
-	github.com/NYTimes/gziphandler v1.1.1 // indirect
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/antchfx/htmlquery v1.3.0 // indirect
@@ -41,7 +41,6 @@ require (
 	github.com/ugorji/go/codec v1.2.8 // indirect
 	golang.org/x/crypto v0.5.0 // indirect
 	golang.org/x/net v0.5.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect
 	golang.org/x/text v0.6.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
