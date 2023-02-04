@@ -1,7 +1,6 @@
 package external
 
 import (
-	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"os"
@@ -31,27 +30,6 @@ type ErrorLog struct {
 	RootCause     string `json:"rootCause,omitempty"`
 	Query         string `json:"query,omitempty"`
 	ExceptionType string `json:"exceptionType,omitempty"`
-}
-
-func WriteHeader(w http.ResponseWriter, code int) http.ResponseWriter {
-	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.WriteHeader(code)
-	return w
-}
-
-func RenderResponse(w http.ResponseWriter, res interface{}, status int) {
-	w.Header().Set("Content-Type", "application/json")
-	content, err := json.Marshal(res)
-	if err != nil {
-		log.Error(err)
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-	w.WriteHeader(status)
-	if _, err = w.Write(content); err != nil {
-		log.Error(err)
-	}
 }
 
 func (m *Message) AddMessageDetails(sw time.Time) {
