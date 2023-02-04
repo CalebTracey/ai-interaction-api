@@ -3,7 +3,6 @@ package internal
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/calebtracey/ai-interaction-api/external"
 	"io"
@@ -13,10 +12,9 @@ import (
 
 const (
 	imageURL    = "https://api.openai.com/v1/images/generations"
+	apiKey      = "API_KEY"
 	contentType = "application/json"
 )
-
-var aiError = errors.New("internal server error")
 
 type DAOI interface {
 	GenerateImage(ctx context.Context, apiRequest *http.Request) (apiResp external.APIResponse)
@@ -38,8 +36,9 @@ func (s DAO) GenerateImage(ctx context.Context, apiRequest *http.Request) (apiRe
 		return apiResp
 	}
 
-	req.Header.Add("Authorization", os.Getenv("API_KEY"))
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", os.Getenv(apiKey))
+	req.Header.Add("Content-Type", contentType)
+	req.Header.Add("Access-Control-Allow-Origin", "*")
 
 	clientResp, clientErr := s.Client.Do(req.WithContext(ctx))
 
