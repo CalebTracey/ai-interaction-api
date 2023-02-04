@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="working state for image generation">
-      <change afterPath="$PROJECT_DIR$/_tests/request_0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="working state for image generation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,7 +180,7 @@
       <workItem from="1675141726725" duration="4515000" />
       <workItem from="1675175857595" duration="2091000" />
       <workItem from="1675219083209" duration="4388000" />
-      <workItem from="1675268028977" duration="18188000" />
+      <workItem from="1675268028977" duration="18264000" />
     </task>
     <task id="LOCAL-00001" summary="first push">
       <created>1675179565328</created>
@@ -207,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675381197507</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="working state for image generation">
+      <created>1675488431940</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675488431940</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
