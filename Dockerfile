@@ -13,7 +13,7 @@ RUN go build -o app
 FROM alpine:3.15
 
 EXPOSE 6080
-COPY --from=builder /app/cmd/svr/app .
+COPY --from=builder /app/cmd/svr .
 COPY --from=builder /app/cmd/svr/config.yaml .
 
 CMD ["./app"]
