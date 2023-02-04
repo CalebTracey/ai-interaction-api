@@ -1,1 +1,2 @@
 /cmd/svr/.env
+/_tests/http-client.private.env.json
