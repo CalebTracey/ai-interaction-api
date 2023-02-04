@@ -65,10 +65,11 @@ func listenAndServe(addr string, handler http.Handler) error {
 const (
 	localhostCRA  = "http://localhost:3000"
 	localhostVite = "http://localhost:5173"
+	githubPages   = "https://calebtracey.github.io/robot-image-ui"
 )
 
 var (
-	allowedOrigins = []string{localhostCRA, localhostVite}
+	allowedOrigins = []string{localhostCRA, localhostVite, githubPages}
 	allowedMethods = []string{"GET", "POST", "OPTIONS", "DELETE", "PUT"}
 	allowedHeaders = []string{"Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "X-Requested-With", "Authorization", "Content-Type", "X-Requested-With", "Bearer", "Origin"}
 )
