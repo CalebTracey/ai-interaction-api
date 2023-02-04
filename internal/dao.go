@@ -1,82 +1,72 @@
 package internal
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/calebtracey/ai-interaction-api/external"
+	"io"
 	"net/http"
 	"os"
 )
 
 const (
 	imageURL    = "https://api.openai.com/v1/images/generations"
+	apiKey      = "API_KEY"
 	contentType = "application/json"
 )
 
 type DAOI interface {
-	GenerateImage(ctx context.Context, apiRequest external.APIRequest) (apiResp external.AIResponse, err external.Errors)
+	GenerateImage(ctx context.Context, apiRequest *http.Request) (apiResp external.APIResponse)
 }
 type DAO struct {
 	Client *http.Client
 }
 
-func (s DAO) GenerateImage(ctx context.Context, apiRequest external.APIRequest) (apiResp external.AIResponse, err external.Errors) {
-	buf := new(bytes.Buffer)
-	if jsonErr := json.NewEncoder(buf).Encode(apiRequest); err != nil {
-		return apiResp, external.Errors{
-			{
-				Error:      jsonErr.Error(),
-				StatusCode: http.StatusBadRequest,
-				Trace:      "GenerateImage",
-			},
-		}
-	}
+func (s DAO) GenerateImage(ctx context.Context, apiRequest *http.Request) (apiResp external.APIResponse) {
+	req, httpErr := http.NewRequest(http.MethodPost, imageURL, io.NopCloser(apiRequest.Body))
 
-	req, httpErr := http.NewRequestWithContext(ctx, http.MethodPost, imageURL, buf)
 	if httpErr != nil {
-		return apiResp, external.Errors{
-			{
-				Error:      httpErr.Error(),
-				StatusCode: http.StatusBadRequest,
-				Trace:      "GenerateImage",
-			},
-		}
+		apiResp.Message.ErrorLog = external.ErrorLogs{{
+			ExceptionType: "status bad request",
+			StatusCode:    "400",
+			Trace:         fmt.Sprintf("GenerateImage: error: %v", httpErr),
+			RootCause:     httpErr.Error(),
+		}}
+		return apiResp
 	}
 
-	req.Header.Add("Authorization", os.Getenv("API_KEY"))
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", os.Getenv(apiKey))
+	req.Header.Add("Content-Type", contentType)
+	req.Header.Add("Access-Control-Allow-Origin", "*")
 
-	aiResp, clientErr := s.Client.Do(req)
+	clientResp, clientErr := s.Client.Do(req.WithContext(ctx))
+
+	defer clientResp.Body.Close()
+
 	if clientErr != nil {
-		return apiResp, external.Errors{
-			{
-				Error:      clientErr.Error(),
-				StatusCode: http.StatusBadRequest,
-				Trace:      "GenerateImage",
-			},
-		}
+		apiResp.Message.ErrorLog = external.ErrorLogs{{
+			ExceptionType: "internal server error",
+			StatusCode:    "500",
+			Trace:         fmt.Sprintf("GenerateImage: error: %v", clientErr),
+			RootCause:     clientErr.Error(),
+		}}
+		return apiResp
 	}
 
-	if aiResp.StatusCode != http.StatusOK {
-		return apiResp, external.Errors{
-			{
-				Error:      clientErr.Error(),
-				StatusCode: http.StatusBadRequest,
-				Trace:      "GenerateImage",
-			},
-		}
+	var aiResp external.AIResponse
+
+	if jsonErr := json.NewDecoder(clientResp.Body).Decode(&aiResp); jsonErr != nil {
+		apiResp.Message.ErrorLog = external.ErrorLogs{{
+			ExceptionType: "internal server error",
+			StatusCode:    "500",
+			Trace:         fmt.Sprintf("GenerateImage: error: %v", jsonErr),
+			RootCause:     jsonErr.Error(),
+		}}
+		return apiResp
 	}
 
-	if jsonErr := json.NewDecoder(aiResp.Body).Decode(&apiResp); jsonErr != nil {
-		return apiResp, external.Errors{
-			{
-				Error:      jsonErr.Error(),
-				StatusCode: http.StatusBadRequest,
-				Trace:      "GenerateImage",
-			},
-		}
-	}
+	apiResp.Result = aiResp
 
-	return apiResp, nil
+	return apiResp
 }

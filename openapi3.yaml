@@ -33,6 +33,8 @@ components:
           format: int64
 
 paths:
+  /test:
+    get:
   /image:
     parameters:
       - name: prompt
@@ -61,4 +63,4 @@ paths:
               schema:
                 type: string
 
-  
+

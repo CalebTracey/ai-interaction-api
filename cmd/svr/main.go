@@ -5,7 +5,7 @@ import (
 	"github.com/calebtracey/ai-interaction-api/internal"
 	config "github.com/calebtracey/config-yaml"
 	"github.com/joho/godotenv"
-	"log"
+	log "github.com/sirupsen/logrus"
 )
 
 const configPath = "config.yaml"
@@ -29,7 +29,10 @@ func (b *builder) initializeDAO() (*internal.DAO, error) {
 	}, nil
 }
 
+// gcloud run deploy
 func main() {
+	defer panicQuit()
+
 	if svc, err := new(builder).initializeDAO(); err != nil {
 		log.Fatal(err)
 	} else {
@@ -41,4 +44,11 @@ func run(svc *internal.DAO) {
 	handler := internal.Handler{DAO: svc}
 
 	log.Fatal(listenAndServe("8080", gziphandler.GzipHandler(corsHandler().Handler(handler.InitializeRoutes()))))
+}
+
+func panicQuit() {
+	if r := recover(); r != nil {
+		log.Errorf("I panicked and am quitting: %v", r)
+		log.Error("I should be alerting someone...")
+	}
 }

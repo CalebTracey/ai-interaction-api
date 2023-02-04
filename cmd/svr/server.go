@@ -62,12 +62,23 @@ func listenAndServe(addr string, handler http.Handler) error {
 	return serverError
 }
 
+const (
+	localhostCRA  = "http://localhost:3000"
+	localhostVite = "http://localhost:5173"
+)
+
+var (
+	allowedOrigins = []string{localhostCRA, localhostVite}
+	allowedMethods = []string{"GET", "POST", "OPTIONS", "DELETE", "PUT"}
+	allowedHeaders = []string{"Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "X-Requested-With", "Authorization", "Content-Type", "X-Requested-With", "Bearer", "Origin"}
+)
+
 func corsHandler() *cors.Cors {
 	return cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000", "http://localhost:8080/v1/image"},
+		AllowedOrigins:   allowedOrigins,
 		AllowCredentials: true,
-		AllowedMethods:   []string{"GET", "POST", "OPTIONS", "DELETE", "PUT"},
-		AllowedHeaders:   []string{"Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "X-Requested-With", "Authorization", "Content-Type", "X-Requested-With", "Bearer", "Origin"},
+		AllowedMethods:   allowedMethods,
+		AllowedHeaders:   allowedHeaders,
 		// Enable Debugging for testing, consider disabling in production
 		Debug: false,
 	})

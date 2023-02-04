@@ -5,14 +5,30 @@ Authorization: {{api-key}}
 
 < request.json
 > handler.js
-
+>>! {{$historyFolder}}/source_image_result.json
 ###
 
 POST localhost:8080/v1/image
 Content-Type: application/json
-Authorization: {{api-key}}
+#Authorization: {{api-key}}
 
-< request.json
+< request_0.json
 > handler.js
+
+###
+
+# @name GO API - POST | Test | New Image
+POST {{URL}}/v1/image
+Content-Type: application/json
+#Authorization: {{api-key}}
+
+{
+  "prompt": "Two giant bears fighting with light sabers on a mountain",
+  "n": 1,
+  "size": "1024x1024"
+}
+
+> handler.js
+>>! {{$historyFolder}}/{{$timestamp}}_image_result.json
 
 ###
