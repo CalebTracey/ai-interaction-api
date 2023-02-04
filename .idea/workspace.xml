@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="updated go.mod" />
+    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="cleanup">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/svr/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/router.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +89,6 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.14285715",
-    "rest.client.default.execution.environment": "dev",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
@@ -161,8 +165,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.tests | GO API - POST | Test | New Image" />
+        <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.tests | API Test POST Image" />
         <item itemvalue="HTTP Request.tests | #3" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
@@ -181,7 +185,7 @@
       <workItem from="1675141726725" duration="4515000" />
       <workItem from="1675175857595" duration="2091000" />
       <workItem from="1675219083209" duration="4388000" />
-      <workItem from="1675268028977" duration="19199000" />
+      <workItem from="1675268028977" duration="20863000" />
     </task>
     <task id="LOCAL-00001" summary="first push">
       <created>1675179565328</created>
@@ -239,7 +243,28 @@
       <option name="project" value="LOCAL" />
       <updated>1675489838785</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updated go.mod">
+      <created>1675489855074</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1675489855074</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated go.mod">
+      <created>1675489885295</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1675489885295</updated>
+    </task>
+    <task id="LOCAL-00011" summary="cleanup">
+      <created>1675490035400</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1675490035400</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +276,8 @@
     <MESSAGE value="working state for image generation" />
     <MESSAGE value="added gitlab pipeline" />
     <MESSAGE value="updated go.mod" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated go.mod" />
+    <MESSAGE value="cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

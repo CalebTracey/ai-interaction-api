@@ -29,6 +29,7 @@ func (b *builder) initializeDAO() (*internal.DAO, error) {
 	}, nil
 }
 
+// gcloud run deploy
 func main() {
 	defer panicQuit()
 

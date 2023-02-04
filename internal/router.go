@@ -31,13 +31,13 @@ func (h Handler) imageHandler() gin.HandlerFunc {
 			return
 
 		} else {
+
 			log.Errorf("imageHandler: error: %v", apiResp.Message.ErrorLog)
 			apiResp.Message.AddMessageDetails(sw)
 			ctx.JSON(apiResp.StatusCode(), apiResp)
 
 			return
 		}
-
 	}
 }
 
