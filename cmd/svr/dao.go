@@ -1,24 +1,25 @@
 package main
 
 import (
-	"github.com/calebtracey/ai-interaction-api/internal"
+	"github.com/calebtracey/ai-interaction-api/internal/facade"
 	config "github.com/calebtracey/config-yaml"
 	"github.com/joho/godotenv"
 )
 
 const OpenaiApi = "openAi"
 
-func initializeDAO(appConfig *config.Config) (*internal.DAO, error) {
+func initializeDAO(appConfig *config.Config) (facade.Service, []error) {
+	var errs []error
 	if err := godotenv.Load(); err != nil {
-		return nil, err
+		errs = append(errs, err)
 	}
 
 	openAiSvc, err := appConfig.Service(OpenaiApi)
 	if err != nil {
-		return nil, err
+		errs = append(errs, err)
 	}
 
-	return &internal.DAO{
+	return facade.Service{
 		Client: openAiSvc.Client,
-	}, nil
+	}, errs
 }

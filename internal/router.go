@@ -1,7 +1,9 @@
 package internal
 
 import (
+	"encoding/json"
 	"github.com/calebtracey/ai-interaction-api/external"
+	"github.com/calebtracey/ai-interaction-api/internal/facade"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"net/http"
@@ -9,7 +11,7 @@ import (
 )
 
 type Handler struct {
-	DAO DAOI
+	Service facade.ServiceI
 }
 
 func (h Handler) InitializeRoutes() *gin.Engine {
@@ -24,18 +26,25 @@ func (h Handler) imageHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		sw := time.Now()
 
-		if apiResp := h.DAO.GenerateImage(ctx, ctx.Request); apiResp.StatusCode() == http.StatusOK {
-			apiResp.Message.AddMessageDetails(sw)
-			ctx.JSON(http.StatusOK, apiResp)
+		var apiResponse external.APIResponse
+		var apiRequest external.APIRequest
 
+		if err := json.NewDecoder(ctx.Request.Body).Decode(&apiRequest); err != nil {
+			apiResponse.Message.AddMessageDetails(sw)
+			ctx.JSON(http.StatusBadRequest, apiResponse)
+			return
+		}
+
+		if apiResponse = h.Service.GenerateImage(ctx, apiRequest); apiResponse.StatusCode() == http.StatusOK {
+			apiResponse.Message.AddMessageDetails(sw)
+			ctx.JSON(http.StatusOK, apiResponse)
 			return
 
 		} else {
 
-			log.Errorf("imageHandler: error: %v", apiResp.Message.ErrorLog)
-			apiResp.Message.AddMessageDetails(sw)
-			ctx.JSON(apiResp.StatusCode(), apiResp)
-
+			log.Errorf("imageHandler: error: %v", apiResponse.Message.ErrorLog)
+			apiResponse.Message.AddMessageDetails(sw)
+			ctx.JSON(apiResponse.StatusCode(), apiResponse)
 			return
 		}
 	}

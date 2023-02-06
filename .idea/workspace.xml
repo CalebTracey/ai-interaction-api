@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="cors updates for dev">
+    <list default="true" id="f19637db-31aa-4446-8a29-44d664d6890e" name="Changes" comment="reformatting + cleanup">
+      <change afterPath="$PROJECT_DIR$/internal/dao/openai/dao.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/facade/facade.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/svr/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/svr/dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/svr/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/svr/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/external/models.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/dao.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="struct_work" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,6 +50,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop_work" />
+                    <option name="lastUsedInstant" value="1675534251" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="struct_work" />
                     <option name="lastUsedInstant" value="1675374817" />
@@ -113,6 +122,7 @@
       <recent name="$PROJECT_DIR$/cmd/svr" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/dao/openai" />
       <recent name="$PROJECT_DIR$/external" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -179,8 +189,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="HTTP Request.tests | GO API - POST | Test | New Image" />
-        <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.tests | API Test POST Image" />
+        <item itemvalue="HTTP Request.tests | #2" />
         <item itemvalue="HTTP Request.tests | #3" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
       </list>
@@ -200,7 +210,7 @@
       <workItem from="1675219083209" duration="4388000" />
       <workItem from="1675268028977" duration="21445000" />
       <workItem from="1675494691998" duration="1579000" />
-      <workItem from="1675529665658" duration="1813000" />
+      <workItem from="1675529665658" duration="15632000" />
     </task>
     <task id="LOCAL-00001" summary="first push">
       <created>1675179565328</created>
@@ -307,11 +317,64 @@
       <option name="project" value="LOCAL" />
       <updated>1675529769677</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="cors updates">
+      <created>1675534266155</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1675534266155</updated>
+    </task>
+    <task id="LOCAL-00017" summary="cors updates">
+      <created>1675544072543</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1675544072543</updated>
+    </task>
+    <task id="LOCAL-00018" summary="cors updates">
+      <created>1675544352017</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1675544352017</updated>
+    </task>
+    <task id="LOCAL-00019" summary="cors updates">
+      <created>1675545344623</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1675545344623</updated>
+    </task>
+    <task id="LOCAL-00020" summary="reformatting + cleanup">
+      <created>1675646358652</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1675646358652</updated>
+    </task>
+    <task id="LOCAL-00021" summary="reformatting + cleanup">
+      <created>1675646482827</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1675646482827</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first push" />
@@ -324,7 +387,9 @@
     <MESSAGE value="github actions - 1" />
     <MESSAGE value="updated Dockerfile" />
     <MESSAGE value="cors updates for dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="cors updates for dev" />
+    <MESSAGE value="cors updates" />
+    <MESSAGE value="reformatting + cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformatting + cleanup" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -339,13 +404,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/router.go</url>
-          <line>26</line>
+          <line>37</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/dao.go</url>
-          <line>42</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

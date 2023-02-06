@@ -1,6 +1,7 @@
-package internal
+package facade
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -18,10 +19,11 @@ const (
 	contentType = "application/json"
 )
 
-type DAOI interface {
-	GenerateImage(ctx context.Context, apiRequest *http.Request) (apiResp external.APIResponse)
+type ServiceI interface {
+	GenerateImage(ctx context.Context, apiRequest external.APIRequest) (apiResp external.APIResponse)
 }
-type DAO struct {
+
+type Service struct {
 	Client *http.Client
 }
 
@@ -32,10 +34,24 @@ func addHeaders(req *http.Request) *http.Request {
 	return req
 }
 
-func (s DAO) GenerateImage(ctx context.Context, apiRequest *http.Request) (apiResp external.APIResponse) {
+func (s Service) GenerateImage(ctx context.Context, apiRequest external.APIRequest) (apiResp external.APIResponse) {
 	var aiResp external.AIResponse
 
-	request, httpErr := http.NewRequest(http.MethodPost, imageURL, io.NopCloser(apiRequest.Body))
+	if errs := apiRequest.Validate(); len(errs) > 0 {
+		for _, err := range errs {
+			apiResp.Message.ErrorLog = append(apiResp.Message.ErrorLog, errorLog(err, 400, "Validate"))
+		}
+		return apiResp
+	}
+
+	// make dao call here
+	requestBuf := new(bytes.Buffer)
+	if jsonErr := json.NewDecoder(requestBuf).Decode(&apiRequest); jsonErr != nil {
+		return responseWithError(apiResp, jsonErr, http.StatusBadRequest, "Decode")
+
+	}
+
+	request, httpErr := http.NewRequest(http.MethodPost, imageURL, io.NopCloser(requestBuf))
 	if httpErr != nil {
 		return responseWithError(apiResp, httpErr, http.StatusBadRequest, "GenerateImage")
 	}
@@ -59,6 +75,15 @@ func (s DAO) GenerateImage(ctx context.Context, apiRequest *http.Request) (apiRe
 	apiResp.Result = aiResp
 
 	return apiResp
+}
+
+func errorLog(err error, code int, trace string) external.ErrorLog {
+	return external.ErrorLog{
+		ExceptionType: http.StatusText(code),
+		StatusCode:    strconv.Itoa(code),
+		Trace:         fmt.Sprintf("%s: error: %v", trace, err),
+		RootCause:     err.Error(),
+	}
 }
 
 // responseWithError adds an error log and returns the response

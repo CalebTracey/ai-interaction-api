@@ -12,8 +12,8 @@ const configPath = "config.yaml"
 func main() {
 	defer panicQuit()
 
-	if svc, err := initializeDAO(config.New(configPath)); err != nil {
-		log.Error(err)
+	if svc, errs := initializeDAO(config.New(configPath)); errs != nil {
+		log.Error(errs)
 		panicQuit()
 
 	} else {
@@ -21,7 +21,7 @@ func main() {
 		log.Fatal(listenAndServe("8080", gziphandler.GzipHandler(
 			corsHandler().Handler(
 				internal.Handler{
-					DAO: svc,
+					Service: svc,
 				}.InitializeRoutes(),
 			)),
 		))
