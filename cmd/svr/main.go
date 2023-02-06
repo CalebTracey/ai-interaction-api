@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/calebtracey/ai-interaction-api/internal"
+	config "github.com/calebtracey/config-yaml"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -11,8 +12,9 @@ const configPath = "config.yaml"
 func main() {
 	defer panicQuit()
 
-	if svc, err := initializeDAO(); err != nil {
-		log.Fatal(err)
+	if svc, err := initializeDAO(config.New(configPath)); err != nil {
+		log.Error(err)
+		panicQuit()
 
 	} else {
 

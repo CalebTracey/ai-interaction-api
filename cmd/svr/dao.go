@@ -8,14 +8,12 @@ import (
 
 const OpenaiApi = "openAi"
 
-func initializeDAO() (*internal.DAO, error) {
+func initializeDAO(appConfig *config.Config) (*internal.DAO, error) {
 	if err := godotenv.Load(); err != nil {
 		return nil, err
 	}
 
-	cfg := config.New(configPath)
-
-	openAiSvc, err := cfg.Service(OpenaiApi)
+	openAiSvc, err := appConfig.Service(OpenaiApi)
 	if err != nil {
 		return nil, err
 	}
