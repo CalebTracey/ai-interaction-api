@@ -12,8 +12,10 @@ POST localhost:8080/v1/image
 Content-Type: application/json
 #Authorization: {{api-key}}
 
-< request_0.json
+< request.json
 > handler.js
+
+>>! {{$historyFolder}}/localhost_image_result.json
 
 ###
 

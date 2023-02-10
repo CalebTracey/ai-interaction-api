@@ -1,6 +1,6 @@
 module github.com/calebtracey/ai-interaction-api
 
-go 1.19
+go 1.20
 
 require (
 	github.com/NYTimes/gziphandler v1.1.1
@@ -9,6 +9,7 @@ require (
 	github.com/joho/godotenv v1.5.0
 	github.com/rs/cors v1.8.3
 	github.com/sirupsen/logrus v1.9.0
+	golang.org/x/sync v0.1.0
 )
 
 require (
@@ -26,6 +27,7 @@ require (
 	github.com/gocolly/colly v1.2.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/jinzhu/copier v0.3.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

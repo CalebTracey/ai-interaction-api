@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/calebtracey/ai-interaction-api/internal/dao/openai"
 	"github.com/calebtracey/ai-interaction-api/internal/facade"
 	config "github.com/calebtracey/config-yaml"
 	"github.com/joho/godotenv"
@@ -20,6 +21,8 @@ func initializeDAO(appConfig *config.Config) (facade.Service, []error) {
 	}
 
 	return facade.Service{
-		Client: openAiSvc.Client,
+		DAO: openai.DAO{
+			Client: openAiSvc.Client,
+		},
 	}, errs
 }

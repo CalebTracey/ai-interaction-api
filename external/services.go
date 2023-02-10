@@ -1,6 +1,7 @@
 package external
 
 import (
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"os"
@@ -40,7 +41,7 @@ func (m *Message) AddMessageDetails(sw time.Time) {
 	}
 
 	m.HostName = host
-	m.TimeTaken = time.Since(sw).String()
+	m.TimeTaken = fmt.Sprintf("%.2f seconds", time.Since(sw).Seconds())
 	if len(m.ErrorLog) == 0 {
 		m.Status = Success
 	} else {
