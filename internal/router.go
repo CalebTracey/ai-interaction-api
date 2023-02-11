@@ -16,7 +16,6 @@ type Handler struct {
 	Service facade.ServiceI
 }
 
-// func
 func (h Handler) InitializeRoutes() *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Logger())
@@ -35,17 +34,14 @@ func (h Handler) imageHandler() gin.HandlerFunc {
 		apiResponse := new(external.APIResponse)
 		apiRequest := new(external.APIRequest)
 
-		log.Infoln("Decoding request...")
 		// decode the http request
 		if err := json.NewDecoder(ctx.Request.Body).Decode(&apiRequest); err != nil {
 			apiResponse.Message.ErrorLog = append(apiResponse.Message.ErrorLog, NewErrorLog(err, http.StatusBadRequest, "imageHandler: NewRequest()"))
 		}
 
 		log.Infoln(apiRequest)
-		log.Infoln("Making source call...")
 		// make service call and return the response (result + message)
 		if apiResponse = h.Service.GenerateImage(ctx, apiRequest); apiResponse.StatusCode() == http.StatusOK {
-			log.Infoln("Success!")
 			apiResponse.Message.AddMessageDetails(sw)
 			ctx.JSON(http.StatusOK, apiResponse)
 			return

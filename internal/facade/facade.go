@@ -10,6 +10,7 @@ import (
 	"math"
 	"net/http"
 	"strconv"
+	"sync/atomic"
 )
 
 const (
@@ -30,56 +31,61 @@ type Service struct {
 
 func (s Service) GenerateImage(ctx context.Context, apiRequest *external.APIRequest) *external.APIResponse {
 	apiResp := new(external.APIResponse)
-	//mu := new(sync.Mutex)
-
-	//mu.Lock()
 	apiRequest.Size = LargeImage
-	//mu.Unlock()
-
-	amount := apiRequest.N
-
-	log.Infof("apiRequest amount: %d", amount)
 	g, ctx := errgroup.WithContext(ctx)
 
-	imageChan := make(chan external.GenImages, amount)
-	defer close(imageChan)
+	// want x images total
+	wantTotal := apiRequest.N
+	//log.Infof("want total: %v", wantTotal)
 
+	requestCount := 1
+	if wantTotal/ChunkSize > 1 {
+		requestCount = wantTotal / ChunkSize
+	}
+
+	//log.Infof("request count: %v", requestCount)
+	responseChan := make(chan external.AIResponse, requestCount)
+	workers := int32(requestCount)
+
+	//log.Infof("chunking request...")
 	// break up request according to ChunkSize and make requests concurrently
-	log.Infof("Chunking Request...")
-	for i := 0; i < amount; i += ChunkSize {
-		amount = requestAmount(i, amount)
-		log.Infof("Current amount: %d", amount)
-		g.Go(func() error {
+	for i := 1; i <= requestCount; i++ {
+		// if last request, check if you don't need the full request size
+		amount := i * ChunkSize
 
-			//defer func() {
-			//	// last one out closes shop
-			//	if atomic.AddInt32(&workers, -1) == 0 {
-			//		log.Infoln("last request, closing channel...")
-			//		close(resultChan)
-			//	}
-			//}()
+		if amount > wantTotal {
+			// amount: 5.0, wantTotal: 3.0; want = 3.0
+			amount = ChunkSize - (amount - wantTotal)
+		}
+
+		if amount < 0 {
+			amount = wantTotal
+		}
+		//log.Infof("current request: %d; amount: %d", i, amount)
+		apiRequest.N = amount
+
+		g.Go(func() error {
+			defer func() {
+				// last one out closes shop
+				if atomic.AddInt32(&workers, -1) == 0 {
+					//log.Infoln("last request, closing channel...")
+					close(responseChan)
+				}
+			}()
 
 			// check if the current request doesn't require the full image count
 			// if not, set the request size to the remainder
-			log.Infoln("==^ getting images...")
-			if _, err := s.getImages(ctx, apiRequest, imageChan); err != nil {
+			if _, err := s.requestChunk(ctx, apiRequest, responseChan); err != nil {
 				return err
 			}
 
-			log.Infoln("==^ goroutine returning...")
 			return nil
 		})
 	}
 
 	g.Go(func() error {
-		defer close(imageChan)
-		idx := 0
-		for images := range imageChan {
-			log.Infof("reading image channel #%d\n", idx)
-			apiResp.Result.Data = append(apiResp.Result.Data, images...)
-			//atomic.AddInt32(&created, int32(res.Created))
-			//imageResponses[idx] = &res.Data
-			idx++
+		for response := range responseChan {
+			apiResp.Result.Data = append(apiResp.Result.Data, response.Data...)
 		}
 		return nil
 	})
@@ -91,32 +97,20 @@ func (s Service) GenerateImage(ctx context.Context, apiRequest *external.APIRequ
 
 	// TODO move mapping
 	// TODO created seems broken at the source right now
-	//totalCreated := int(created)
-	//apiResp.Result.Created = totalCreated
-	//apiResp.Message.Count = totalCreated
-	log.Infof("Final OpenAI result: %v", apiResp.Result)
-	log.Infoln("returning final APIResponse...")
+
+	apiResp.Result.Created = len(apiResp.Result.Data)
+	apiResp.Message.Count = len(apiResp.Result.Data)
 
 	return apiResp
 }
 
-func requestAmount(i, amount int) int {
-	end := i + ChunkSize
-	if end > amount {
-		//todo this is all not right
-		return end - amount
-	} else {
-		return ChunkSize
-	}
-}
-
-func (s Service) getImages(ctx context.Context, apiRequest *external.APIRequest, imageChan chan<- external.GenImages) (resp external.AIResponse, err error) {
+func (s Service) requestChunk(ctx context.Context, apiRequest *external.APIRequest, imageChan chan<- external.AIResponse) (resp external.AIResponse, err error) {
 	if resp, err = s.DAO.ImageRequest(ctx, apiRequest); err == nil {
 		select {
 		case <-ctx.Done():
 			log.Errorf("=== getImages: context cancelled")
 			return resp, ctx.Err()
-		case imageChan <- resp.Data:
+		case imageChan <- resp:
 			log.Infoln("===^ resultChan received result")
 			//	log.Infoln("=== default select")
 		}
